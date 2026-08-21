@@ -10,7 +10,7 @@ export function useFocusTrap(isOpen, containerRef, toggleRef, onClose) {
       if (!container) return [];
 
       return Array.from(
-        containier.querySelectorAll(
+        container.querySelectorAll(
           "a, button, [tabindex]:not([tabindex='-1'])",
         ),
       ).filter((el) => !el.hasAttribute("disabled"));
@@ -29,10 +29,10 @@ export function useFocusTrap(isOpen, containerRef, toggleRef, onClose) {
       );
       const activeIndex = focusables.indexOf(document.activeElement);
 
-      if ((activeIndex = -1)) return;
+      if ((activeIndex === -1)) return;
       if (e.shiftKey && activeIndex === 0) {
         e.preventDefault();
-        focusables[focusables.length - 1].focus(0);
+        focusables[focusables.length - 1].focus();
       } else if (!e.shiftKey && activeIndex === focusables.length - 1) {
         e.preventDefault();
         focusables[0].focus();
